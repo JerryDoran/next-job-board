@@ -1,0 +1,15 @@
+node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# Keep environment variables out of version control
+.env
+.env*.local
+
+# vercel
+.vercel
