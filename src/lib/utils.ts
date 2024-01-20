@@ -16,3 +16,10 @@ export function formatCurrency(amount: number) {
 export function formatRelativeDate(fromDate: Date) {
   return formatDistanceToNowStrict(fromDate, { addSuffix: true });
 }
+
+export function toSlug(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^\w-]+/g, "")
+    .replace(/ /g, "-");
+}

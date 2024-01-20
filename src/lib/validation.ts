@@ -47,7 +47,7 @@ export const CreateJobSchema = z
       (value) => jobTypes.includes(value),
       "Invalid job type",
     ),
-    companyLogoUrl: companyLogoSchema,
+    companyLogo: companyLogoSchema,
     location: z.string().optional(),
     description: z.string().max(5000).optional(),
     salary: z
@@ -66,4 +66,5 @@ export const jobFilterSchema = z.object({
   remote: z.coerce.boolean().optional(),
 });
 
+export type CreateJobValues = z.infer<typeof CreateJobSchema>;
 export type JobFilterValues = z.infer<typeof jobFilterSchema>;
