@@ -29,10 +29,10 @@ export async function createJobPosting(formData: FormData) {
 
   let companyLogoUrl: string | undefined = undefined;
 
-  if (companyLogoUrl) {
+  if (companyLogo) {
     const blob = await put(
       `company_logos/${slug}${path.extname(companyLogo!.name)}`,
-      companyLogoUrl,
+      companyLogo,
       {
         access: "public",
         addRandomSuffix: false,
@@ -40,6 +40,7 @@ export async function createJobPosting(formData: FormData) {
     );
 
     companyLogoUrl = blob.url;
+    console.log(blob.url);
   }
 
   await prisma.job.create({
