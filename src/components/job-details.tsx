@@ -22,7 +22,6 @@ export default function JobDetails({
     companyLogoUrl,
   },
 }: JobDetailsProps) {
-  console.log(companyLogoUrl, companyName);
   return (
     <section className="w-full grow space-y-5">
       <div className="flex items-center gap-3">
