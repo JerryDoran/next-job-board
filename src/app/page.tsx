@@ -10,6 +10,7 @@ type HomePageProps = {
     type?: string;
     location?: string;
     remote?: string;
+    page?: string;
   };
 };
 
@@ -54,7 +55,10 @@ export default async function Home({ searchParams }: HomePageProps) {
       </div>
       <section className="flex flex-col gap-4 md:flex-row">
         <JobFilterSidebar defaultValues={filterValues} />
-        <JobResults filteredValues={filterValues} />
+        <JobResults
+          filteredValues={filterValues}
+          page={searchParams.page ? parseInt(searchParams.page) : undefined}
+        />
       </section>
     </main>
   );
