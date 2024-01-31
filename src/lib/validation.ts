@@ -25,7 +25,8 @@ const applicationSchema = z
 const locationSchema = z
   .object({
     locationType: requiredString.refine(
-      (value) => locationTypes.includes(value),
+      (value: string) =>
+        locationTypes.includes(value as "Remote" | "Hybrid" | "On-site"),
       "Invalid location type",
     ),
     location: z.string().max(100).optional(),
@@ -44,7 +45,16 @@ export const CreateJobSchema = z
     title: requiredString.max(100),
     companyName: requiredString.max(100),
     type: requiredString.refine(
-      (value) => jobTypes.includes(value),
+      (value: string) =>
+        jobTypes.includes(
+          value as
+            | "Full-time"
+            | "Part-time"
+            | "Contract"
+            | "Internship"
+            | "Temporary"
+            | "Volunteer",
+        ),
       "Invalid job type",
     ),
     companyLogo: companyLogoSchema,
