@@ -3,6 +3,8 @@ import JobListItem from "./job-list-item";
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 type JobResultsProps = {
   filteredValues: JobFilterValues;
@@ -131,5 +133,31 @@ function Pagination({
     return `/?${searchParams.toString()}`;
   }
 
-  return <div className="flex justify-between"></div>;
+  return (
+    <div className="flex justify-between">
+      <Link
+        href={generatePageLink(currentPage - 1)}
+        className={cn(
+          "flex items-center gap-2 font-semibold",
+          currentPage === 1 && "invisible",
+        )}
+      >
+        <ArrowLeft size={16} />
+        Prev Page
+      </Link>
+      <span className="text-sm text-muted-foreground">
+        Page {currentPage} of {totalPages}
+      </span>
+      <Link
+        href={generatePageLink(currentPage + 1)}
+        className={cn(
+          "flex items-center gap-2 font-semibold",
+          currentPage >= totalPages && "invisible",
+        )}
+      >
+        <ArrowRight size={16} />
+        Next Page
+      </Link>
+    </div>
+  );
 }
